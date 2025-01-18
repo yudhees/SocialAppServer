@@ -9,7 +9,7 @@ WORKDIR /app/server
 COPY package.json ./
 COPY tsconfig.json ./ 
 COPY global.d.ts ./ 
-COPY .env ./ 
+# COPY .env ./ 
 COPY src ./src
 
 # Install dependencies
