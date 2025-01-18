@@ -94,7 +94,7 @@ export default class PostsController{
             .where('post_id',postId)
             .innerJoin('users','comments.user_id','=','users.id').orderBy('created_at','desc').then()
             const results=comments.map(comment=>{
-                return {...comment,created_at:moment(res.created_at).format('MM-DD-YYYY hh:mm')}
+                return {...comment,created_at:moment(comment.created_at).format('DD-MM-YY hh:mm')}
             })
             return res.send({success:true,data:results})
         } catch (error) {
