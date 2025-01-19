@@ -12,14 +12,19 @@ COPY global.d.ts ./
 # COPY .env ./ 
 COPY src ./src
 
+RUN npm install -g npm@11.0.0
+
 # Install dependencies
 RUN npm install
 
 RUN npx tsc || echo "TypeScript errors ignored, continuing build."
 
-RUN addgroup -g 10014 choreo && \
-    adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
 
+RUN addgroup -g 10014 choreo && \
+    adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser && \
+    mkdir -p /home/choreouser/.npm/_logs && \
+    chmod -R 755 /home/choreouser/.npm && \
+    chown -R choreouser:choreouser /home/choreouser
 USER 10014
 
 # Expose the application port
