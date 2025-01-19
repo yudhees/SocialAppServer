@@ -21,7 +21,7 @@ RUN npm install
 RUN npx tsc || echo "TypeScript errors ignored, continuing build."
 
 RUN addgroup -g 10014 choreo && \
-    adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
+adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
 
 USER 10014
 # RUN chown -R choreouser:choreouser /home/choreouser
