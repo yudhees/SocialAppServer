@@ -20,14 +20,14 @@ RUN npm install
 
 RUN npx tsc || echo "TypeScript errors ignored, continuing build."
 
-RUN mkdir -p /home/choreouser/.npm/_logs && \
-    chmod -R 755 /home/choreouser/.npm && \
-    chown -R choreouser:choreouser /home/choreouser
-    
+RUN mkdir -p /home/choreouser/.npm/_logs 
+RUN chmod -R 755 /home/choreouser/.npm 
+
 RUN addgroup -g 10014 choreo && \
     adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
-    
+
 USER 10014
+RUN chown -R choreouser:choreouser /home/choreouser
 
 # Expose the application port
 EXPOSE 3000
