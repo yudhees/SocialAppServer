@@ -1,6 +1,7 @@
 
 # Use the official Node.js image
-FROM node:23-alpine
+# FROM node:23-alpine
+FROM node:23-bullseye-slim
 
 # Set the working directory
 WORKDIR /app/server
@@ -21,7 +22,7 @@ RUN npx tsc || echo "TypeScript errors ignored, continuing build."
 
 
 RUN addgroup -g 10014 choreo && \
-    adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser && \
+    adduser -D -H -u 10014 -G choreo choreouser && \
     mkdir -p /home/choreouser/.npm/_logs && \
     chmod -R 755 /home/choreouser/.npm && \
     chown -R choreouser:choreouser /home/choreouser
