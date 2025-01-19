@@ -23,8 +23,6 @@ RUN npx tsc || echo "TypeScript errors ignored, continuing build."
 RUN addgroup -g 10014 choreo && \
     adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
 
-RUN mkdir -p /home/choreouser/.npm/_logs 
-RUN chmod -R 755 /home/choreouser/.npm    
 USER 10014
 # RUN chown -R choreouser:choreouser /home/choreouser
 
